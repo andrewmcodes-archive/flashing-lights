@@ -10,9 +10,10 @@ class Circle {
     return 'ci/circleci'
   }
 
-  buildUri ({ owner, repo }, build) { return `https://circleci.com/api/v1.1/project/github/${owner}/${repo}/${build}` }
+  buildUri ({ owner, repo }, build) { return `https://circleci.com/api/v2.0/project/github/${owner}/${repo}/${build}` }
 
   parseLog (log) {
+    console.log(log);
     // sp00ky RegExp to start the extraction
     const start = new RegExp(/\r\n|\n/g)
 

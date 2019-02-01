@@ -1,6 +1,8 @@
 const createProbot = require('probot-ts')
 const { bot } = require('./dist')
-
+const zlib = require('zlib'); // for GZIP
+const http = require('http');
+const https = require('https');
 const settings = require('./env.json')
 process.env.APP_NAME = 'ci-reporter'
 
@@ -13,6 +15,7 @@ probot.load(bot)
  */
 exports.bot = (request, response) => {
   const event = request.get('x-github-event') || request.get('X-GitHub-Event')
+  console.log(event);
   const id = request.get('x-github-delivery') || request.get('X-GitHub-Delivery')
   console.log(`Received event ${event}${request.body.action ? ('.' + request.body.action) : ''}`)
   if (event) {
