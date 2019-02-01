@@ -6,11 +6,6 @@ process.env.APP_NAME = 'ci-reporter'
 
 const probot = createProbot(settings)
 
-// Creates a Bunyan Stackdriver Logging client
-const LoggingBunyan = require('@google-cloud/logging-bunyan')
-const loggingBunyan = new LoggingBunyan()
-probot.logger.addStream(loggingBunyan.stream())
-
 probot.load(bot)
 
 /**

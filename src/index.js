@@ -1,4 +1,3 @@
-const Travis = require('./providers/Travis')
 const Circle = require('./providers/Circle')
 const defaultConfig = require('./default-config.json')
 const newComment = require('./new-comment')
@@ -19,10 +18,7 @@ module.exports = robot => {
 
       const { context: statusContext, sha } = context.payload
 
-      if (statusContext === Travis.ctx) {
-        context.log(`Creating TravisCI instance for ${context.id}`)
-        serializer = new Travis(context)
-      } else if (statusContext === Circle.ctx) {
+      if (statusContext === Circle.ctx) {
         context.log(`Creating CircleCI instance for ${context.id}`)
         serializer = new Circle(context)
       } else {
